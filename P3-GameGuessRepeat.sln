@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34322.80
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P3-GameGuessRepeat", "P3-GameGuessRepeat.csproj", "{642F2EB4-93E1-4A97-AE61-0F99D035C0B5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{642F2EB4-93E1-4A97-AE61-0F99D035C0B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{642F2EB4-93E1-4A97-AE61-0F99D035C0B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{642F2EB4-93E1-4A97-AE61-0F99D035C0B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{642F2EB4-93E1-4A97-AE61-0F99D035C0B5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7D397D7E-E815-4A6F-8E74-59061AE953BA}
+	EndGlobalSection
+EndGlobal
