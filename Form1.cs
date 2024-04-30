@@ -1,12 +1,6 @@
 ﻿using P3_GameGuessRepeat.Properties;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace P3_GameGuessRepeat
@@ -26,6 +20,7 @@ namespace P3_GameGuessRepeat
             public short Round;
             public short Correct;
             public short Wrong;
+            public decimal TimeInSecond;
         }
         // Create a new instance of the Random class
         Random random = new Random();
@@ -33,15 +28,16 @@ namespace P3_GameGuessRepeat
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             ResetParameter();
+            GameStatus.TimeInSecond = Convert.ToDecimal(nudSetTime.Value);
             GameStatus.Round++;
-            foreach(Button button in panel1.Controls)
+            foreach (Button button in panel1.Controls)
             {
                 button.Text = random.Next(10, 40).ToString();
             }
             lblNumber.Text = random.Next(10, 40).ToString();
             GameStatus.Number = lblNumber.Text;
             GameStatus.NumberOfRepetition = 0;
-            foreach(Button button in panel1.Controls)
+            foreach (Button button in panel1.Controls)
             {
                 if (button.Text == GameStatus.Number)
                 {
@@ -49,11 +45,11 @@ namespace P3_GameGuessRepeat
                 }
             }
             notifyIcon1.Icon = SystemIcons.Application;
-            notifyIcon1.BalloonTipText = "Time is Just 10 Seconds";
+            notifyIcon1.BalloonTipText = $"Time is Just {GameStatus.TimeInSecond} Seconds";
             notifyIcon1.BalloonTipTitle = "Guess Game";
             notifyIcon1.BalloonTipIcon = ToolTipIcon.Info;
             notifyIcon1.ShowBalloonTip(1000);
-            
+
         }
 
         private void btnCheck_Click(object sender, EventArgs e)
@@ -81,7 +77,7 @@ namespace P3_GameGuessRepeat
                     GameStatus.Wrong++;
                 }
                 MessageBox.Show(lblResult.Text);
-                if(MessageBox.Show("Do You want to Play Again?","Guess Game",MessageBoxButtons.OKCancel,MessageBoxIcon.Question)== DialogResult.OK)
+                if (MessageBox.Show("Do You want to Play Again?", "Guess Game", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
                     btnGenerate_Click(sender, e);
                 }
@@ -94,7 +90,7 @@ namespace P3_GameGuessRepeat
                     MessageBox.Show("You play " + GameStatus.Round + " Round and You have " + GameStatus.Correct +
                         " Correct Answers " + GameStatus.Wrong + " Wrong Answers ", "Final Results",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
+
                 }
             }
         }
@@ -113,10 +109,10 @@ namespace P3_GameGuessRepeat
         {
             GameStatus.Counter++;
             lblTimer.Text = GameStatus.Counter.ToString() + "s";
-            if (GameStatus.Counter == 10)
+            if (GameStatus.Counter == nudSetTime.Value)
             {
-                timer1.Enabled= false;
-                if(MessageBox.Show("Time Over", "End", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
+                timer1.Enabled = false;
+                if (MessageBox.Show("Time Over", "End", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
                 {
                     btnGenerate_Click(sender, e);
 
@@ -131,6 +127,11 @@ namespace P3_GameGuessRepeat
             btnGenerate_Click(sender, e);
         }
 
-       
+        private void nudSetTime_ValueChanged(object sender, EventArgs e)
+        {
+            lblSetTime.Text = $"Timer: {nudSetTime.Value}";
+        }
+
+
     }
 }
